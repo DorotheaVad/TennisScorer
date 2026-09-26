@@ -19,7 +19,7 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
         when (player) {
             player1 -> player1Score += 1
             player2 -> player2Score += 1
-            else -> println("Throw Exception")
+            else -> throw (IllegalArgumentException("This Player is not a part of this Game!"))
         }
 
         deuce=isDeuce(player1Score, player2Score)
@@ -27,6 +27,7 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
         }else{
             if (isGame(player1Score,player2Score)){
                     gameWinner=player
+                    advPlayer=null
                 }else if(isAdv(player1Score,player2Score)){
                     advPlayer=player
                 }else{
