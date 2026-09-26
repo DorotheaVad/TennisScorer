@@ -51,4 +51,5 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
     fun isGame(score1:Int, score2:Int): Boolean{
         return  (deuceHappened && ((score1==score2+2)||score2==score1+2)) || (!deuceHappened && (score1==4|| score2==4))
     }
+
 }
