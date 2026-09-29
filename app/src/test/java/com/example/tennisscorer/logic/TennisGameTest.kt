@@ -10,8 +10,9 @@ class TennisGameTest {
         val player1 = TennisPlayer("Alice")
         val player2 = TennisPlayer("Bob")
         val game = TennisGame(player1, player2)
-        game.addPoint(player1)
+        val aP=game.addPoint(player1)
         assertEquals(1, game.player1Score)
+        assertEquals(true,aP)
     }
 
 
@@ -34,6 +35,7 @@ class TennisGameTest {
         game.addPoint(nonplayer)}
 
     }
+
 
     @Test
     fun test_is_deuce(){
@@ -203,6 +205,31 @@ class TennisGameTest {
         assertEquals(null,game.advPlayer)
         assertEquals(false,game.deuce)
         assertEquals(false,game.deuceHappened)
+    }
+
+
+    @Test
+    fun cannot_update_game_score_after_game_won(){
+        val player1 = TennisPlayer("Alice")
+        val player2 = TennisPlayer("Bob")
+        val game = TennisGame(player1, player2)
+
+        game.addPoint(player1)//15
+        game.addPoint(player1)//30
+        game.addPoint(player1)//40
+
+
+        game.addPoint(player1)//game
+
+        val aP=game.addPoint(player2)
+
+
+
+        assertEquals(player1,game.gameWinner)
+        assertEquals(false,aP)
+        assertEquals(0,game.player2Score)
+
+
     }
 
     @Test

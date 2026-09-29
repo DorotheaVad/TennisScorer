@@ -14,8 +14,8 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
 
 
 
-    fun addPoint(player: TennisPlayer) {
-
+    fun addPoint(player: TennisPlayer): Boolean{
+        if (gameWinner!=null) return false
         when (player) {
             player1 -> player1Score += 1
             player2 -> player2Score += 1
@@ -33,8 +33,10 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
                 }else{
                     advPlayer=null
                 }
-    }
-        return
+            }
+
+        return true
+
     }
 
 

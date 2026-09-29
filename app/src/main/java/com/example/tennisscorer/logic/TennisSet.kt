@@ -7,7 +7,7 @@ class TennisSet(val player1: TennisPlayer,val player2: TennisPlayer) {
     var currentGame= TennisGame(player1,player2)
     var setWinner:TennisPlayer?=null
 
-    var tiebreakGame:TiebreakGame?=null
+//    var tiebreakGame:TiebreakGame?=null
     var setScore=mutableMapOf<TennisPlayer?,Int>(player1 to 0, player2 to 0)
 
 
@@ -15,25 +15,25 @@ class TennisSet(val player1: TennisPlayer,val player2: TennisPlayer) {
         games.add(currentGame)
     }
 
-    private fun startNewGame(){
+     fun startNewGame(){
         currentGame=TennisGame(player1,player2)
         games.add(currentGame)
 
     }
 
-    private fun startTieBreakGame(){
-        //create the tiebreakGame , currentgame=tiebreakgame
-    }
+//    private fun startTieBreakGame(){
+//        //create the tiebreakGame , currentgame=tiebreakgame
+//    }
 
-    fun endGame(): Boolean{ //change some things to introduce the tiebreak , should see how the addGamePoint and checkSetWin should work with tiebreaks or just have different behaviour (check whether the game is simple or tiebreak)
+    fun updateSetScore(): Boolean{ //change some things to introduce the tiebreak , should see how the addGamePointToSetSet and checkSetWin should work with tiebreaks or just have different behaviour (check whether the game is simple or tiebreak)
         val player=currentGame.gameWinner
-        if (player!=null){
+        if (setWinner==null && player!=null){
 
-            addGamePoint(player)
+            addGamePointToSet(player)
             if (checkSetWin()){
                 setWinner=player
             }else if (checkTiebreak()){
-                startTieBreakGame()
+//                startTieBreakGame()
 
             }
             else{
@@ -45,11 +45,12 @@ class TennisSet(val player1: TennisPlayer,val player2: TennisPlayer) {
         return false
     }
 
-    fun addGamePoint(player: TennisPlayer?){
+    fun addGamePointToSet(player: TennisPlayer?){
 
         val playerScore=setScore[player]?:throw IllegalArgumentException("This player is not inside the game !")
 
         setScore[player]=playerScore+1
+
     }
 
     fun checkSetWin(): Boolean{
