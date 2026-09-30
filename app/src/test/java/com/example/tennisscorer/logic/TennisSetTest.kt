@@ -11,7 +11,7 @@ class TennisSetTest {
         val player2 = TennisPlayer("Alice")
         val ts = TennisSet(player1, player2)
         assertEquals(1, (ts.games).size)
-        assertNotNull(ts.currentGame)
+        assertNotNull(ts.currentGame!!)
     }
 
     @Test
@@ -19,11 +19,11 @@ class TennisSetTest {
         val player1 = TennisPlayer("Bob")
         val player2 = TennisPlayer("Alice")
         val ts = TennisSet(player1, player2)
-        val pointerGame = ts.currentGame
+        val pointerGame = ts.currentGame!!
         ts.startNewGame()
         assertEquals(2, (ts.games).size)
-        assertNotNull(ts.currentGame)
-        assertNotEquals(pointerGame, ts.currentGame)
+        assertNotNull(ts.currentGame!!)
+        assertNotEquals(pointerGame, ts.currentGame!!)
 
     }
 
@@ -128,7 +128,7 @@ class TennisSetTest {
         val ts = TennisSet(player1, player2)
 
         for (i in 1..4){
-        ts.currentGame.addPoint(player1)}
+        ts.currentGame!!.addPoint(player1)}
 
 
         assertEquals(true,ts.updateSetScore())
@@ -145,7 +145,7 @@ class TennisSetTest {
         val ts = TennisSet(player1, player2)
 
         for (i in 1..3){
-        ts.currentGame.addPoint(player1)}
+        ts.currentGame!!.addPoint(player1)}
 
 
         assertEquals(false,ts.updateSetScore())
@@ -162,10 +162,10 @@ class TennisSetTest {
         val ts = TennisSet(player1, player2)
 
         for (i in 1..6){
-        ts.currentGame.addPoint(player2)
-        ts.currentGame.addPoint(player2)
-        ts.currentGame.addPoint(player2)
-        ts.currentGame.addPoint(player2)
+        ts.currentGame!!.addPoint(player2)
+        ts.currentGame!!.addPoint(player2)
+        ts.currentGame!!.addPoint(player2)
+        ts.currentGame!!.addPoint(player2)
 
         ts.updateSetScore()
         }
@@ -187,10 +187,10 @@ class TennisSetTest {
         val ts = TennisSet(player1, player2)
 
         for (i in 1..6){
-            ts.currentGame.addPoint(player2)
-            ts.currentGame.addPoint(player2)
-            ts.currentGame.addPoint(player2)
-            ts.currentGame.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
 
             ts.updateSetScore()
         }

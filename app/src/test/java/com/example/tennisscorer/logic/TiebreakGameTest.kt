@@ -45,7 +45,7 @@ class TiebreakGameTest {
 
         assertEquals(7,tiebreakGame.player1Score)
         assertEquals(5,tiebreakGame.player2Score)
-        assertEquals(player1,tiebreakGame.tiebreakWinner)
+        assertEquals(player1,tiebreakGame.gameWinner)
 
     }
 
@@ -69,7 +69,7 @@ class TiebreakGameTest {
 
         assertEquals(9,tiebreakGame.player1Score)
         assertEquals(7,tiebreakGame.player2Score)
-        assertEquals(player1,tiebreakGame.tiebreakWinner)
+        assertEquals(player1,tiebreakGame.gameWinner)
 
     }
 
@@ -90,7 +90,7 @@ class TiebreakGameTest {
 
         assertEquals(7,tiebreakGame.player1Score)
         assertEquals(6,tiebreakGame.player2Score)
-        assertEquals(null,tiebreakGame.tiebreakWinner)
+        assertEquals(null,tiebreakGame.gameWinner)
 
     }
 
@@ -110,7 +110,7 @@ class TiebreakGameTest {
 
         assertEquals(9,tiebreakGame.player1Score)
         assertEquals(9,tiebreakGame.player2Score)
-        assertEquals(null,tiebreakGame.tiebreakWinner)
+        assertEquals(null,tiebreakGame.gameWinner)
 
     }
 

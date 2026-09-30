@@ -2,7 +2,7 @@ package com.example.tennisscorer.logic
 
 import androidx.navigationevent.NavigationEventInfo
 
-class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
+open class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
     var player1Score = 0
     var player2Score = 0
     var deuceHappened: Boolean=false
@@ -14,7 +14,7 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
 
 
 
-    fun addPoint(player: TennisPlayer): Boolean{
+    open fun addPoint(player: TennisPlayer): Boolean{
         if (gameWinner!=null) return false
         when (player) {
             player1 -> player1Score += 1
@@ -50,7 +50,7 @@ class TennisGame(val player1: TennisPlayer,val player2 : TennisPlayer) {
         return (deuceHappened && ((score1==score2+1 || score2==score1+1)))
     }
 
-    fun isGame(score1:Int, score2:Int): Boolean{
+    open fun isGame(score1:Int, score2:Int): Boolean{
         return  (deuceHappened && ((score1==score2+2)||score2==score1+2)) || (!deuceHappened && (score1==4|| score2==4))
     }
 

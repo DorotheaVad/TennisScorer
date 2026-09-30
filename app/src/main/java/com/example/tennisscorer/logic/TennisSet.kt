@@ -4,44 +4,49 @@ import androidx.compose.runtime.currentRecomposeScope
 
 class TennisSet(val player1: TennisPlayer,val player2: TennisPlayer) {
     val games=mutableListOf<TennisGame>()
-    var currentGame= TennisGame(player1,player2)
+    var currentGame: TennisGame?= TennisGame(player1,player2)
     var setWinner:TennisPlayer?=null
 
-//    var tiebreakGame:TiebreakGame?=null
+    var tiebreakGame:TiebreakGame?=null
     var setScore=mutableMapOf<TennisPlayer?,Int>(player1 to 0, player2 to 0)
 
 
     init {
-        games.add(currentGame)
+        games.add(currentGame!!)
     }
 
      fun startNewGame(){
         currentGame=TennisGame(player1,player2)
-        games.add(currentGame)
+        games.add(currentGame!!)
 
     }
 
-//    private fun startTieBreakGame(){
-//        //create the tiebreakGame , currentgame=tiebreakgame
-//    }
+    private fun startTieBreakGame(){
+        tiebreakGame= TiebreakGame(player1,player2)
+        currentGame=tiebreakGame
 
-    fun updateSetScore(): Boolean{ //change some things to introduce the tiebreak , should see how the addGamePointToSet and checkSetWin should work with tiebreaks or just have different behaviour (check whether the game is simple or tiebreak)
-        val player=currentGame.gameWinner
-        if (setWinner==null && player!=null){
+    }
 
-            addGamePointToSet(player)
-            if (checkSetWin()){
-                setWinner=player
-            }else if (checkTiebreak()){
-//                startTieBreakGame()
+    fun updateSetScore(): Boolean {
+        val player = currentGame!!.gameWinner
+        if (setWinner == null && player != null) {
 
-            }
-            else{
-                startNewGame()
+            if (tiebreakGame == null) {
+                addGamePointToSet(player)
+                if (checkSetWin()) {
+                    setWinner = player
+                } else if (checkTiebreak()) {
+                    startTieBreakGame()
+                } else {
+                    startNewGame()
+                }
+            } else{
+                setWinner = player
             }
 
             return true
         }
+
         return false
     }
 

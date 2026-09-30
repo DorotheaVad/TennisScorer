@@ -1,28 +1,24 @@
 package com.example.tennisscorer.logic
 
-class TiebreakGame(val player1: TennisPlayer,val player2: TennisPlayer) {
+class TiebreakGame(player1: TennisPlayer, player2: TennisPlayer):TennisGame(player1,player2) {
 
-    var player1Score=0
-    var player2Score=0
 
-    var tiebreakWinner: TennisPlayer?=null
+    override fun addPoint(player: TennisPlayer): Boolean{
 
-    fun addPoint(player: TennisPlayer): Boolean{
-
-        if (tiebreakWinner!=null) return false
+        if (gameWinner!=null) return false
         when (player) {
             player1 -> player1Score += 1
             player2 -> player2Score += 1
             else -> throw (IllegalArgumentException("This Player is not a part of this Game!"))
         }
 
-        if (isTiebreak()) tiebreakWinner=player
+        if (isGame(player1Score,player2Score)) gameWinner=player
 
         return  true
     }
 
-    fun isTiebreak(): Boolean{
-        return ((player1Score>=7 && player1Score>=player2Score+2)||(player1Score>=7 && player1Score>=player2Score+2))
+    override fun isGame(score1:Int,score2:Int): Boolean{
+        return ((score1>=7 && score1>=score2+2)||(score2>=7 && score2>=score1+2))
     }
 
 }
