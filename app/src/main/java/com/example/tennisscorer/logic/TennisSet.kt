@@ -25,7 +25,7 @@ class TennisSet(val player1: TennisPlayer,val player2: TennisPlayer) {
 //        //create the tiebreakGame , currentgame=tiebreakgame
 //    }
 
-    fun updateSetScore(): Boolean{ //change some things to introduce the tiebreak , should see how the addGamePointToSetSet and checkSetWin should work with tiebreaks or just have different behaviour (check whether the game is simple or tiebreak)
+    fun updateSetScore(): Boolean{ //change some things to introduce the tiebreak , should see how the addGamePointToSet and checkSetWin should work with tiebreaks or just have different behaviour (check whether the game is simple or tiebreak)
         val player=currentGame.gameWinner
         if (setWinner==null && player!=null){
 
