@@ -180,6 +180,19 @@ class TennisSetTest {
 
 
     @Test
+    fun check_tiebreak_true(){
+        val player1 = TennisPlayer("Bob")
+        val player2 = TennisPlayer("Alice")
+        val ts = TennisSet(player1, player2)
+
+        ts.setScore[player1]=6
+        ts.setScore[player2]=6
+
+        assertEquals(true,ts.checkTiebreak())
+
+    }
+
+    @Test
     fun cannot_update_set_score_after_win(){
 
         val player1 = TennisPlayer("Bob")
@@ -201,8 +214,60 @@ class TennisSetTest {
         assertEquals(player2,ts.setWinner)
 
 
+    }
+
+    @Test
+    fun check_tiebreak_not_true_6_5(){
+        val player1 = TennisPlayer("Bob")
+        val player2 = TennisPlayer("Alice")
+        val ts = TennisSet(player1, player2)
+
+        ts.setScore[player1]=6
+        ts.setScore[player2]=5
+
+        assertEquals(false,ts.checkTiebreak())
 
     }
 
+
+
+    @Test
+    fun check_for_tiebreak_game_successfully_started(){
+        val player1 = TennisPlayer("Bob")
+        val player2 = TennisPlayer("Alice")
+        val ts = TennisSet(player1, player2)
+        for (i in 1..5){
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+            ts.currentGame!!.addPoint(player2)
+
+            ts.updateSetScore()
+        }
+
+        for (i in 1..5){
+            ts.currentGame!!.addPoint(player1)
+            ts.currentGame!!.addPoint(player1)
+            ts.currentGame!!.addPoint(player1)
+            ts.currentGame!!.addPoint(player1)
+
+            ts.updateSetScore()
+        }
+
+        for(i in 1..4){
+            ts.currentGame!!.addPoint(player2)
+            ts.updateSetScore()
+        }
+
+        for(i in 1..4){
+            ts.currentGame!!.addPoint(player1)
+            ts.updateSetScore()
+        }
+
+
+        ts.updateSetScore()
+        assertNotNull(ts.tiebreakGame)
+
+    }
 
 }
