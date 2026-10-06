@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -87,8 +86,8 @@ fun MatchDisplay( match: TennisMatch) {
                         Row(horizontalArrangement = Arrangement.Center) {
                             Text(match.player1.name, modifier = Modifier.weight(1f))
 
-                            repeat(numberOfSets) { set ->
-                                Spacer(modifier = Modifier.width(5.dp),)
+                            repeat(numberOfSets) {
+                                Spacer(modifier = Modifier.width(5.dp))
                                 Text("0", modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                             }
                         }
@@ -97,7 +96,7 @@ fun MatchDisplay( match: TennisMatch) {
 
                         Row(horizontalArrangement = Arrangement.Center) {
                             Text(match.player2.name,modifier=Modifier.weight(1f))
-                            repeat(numberOfSets) { set ->
+                            repeat(numberOfSets) {
                                 Spacer(modifier = Modifier.width(5.dp))
                                 Text("0", modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                             }
@@ -111,7 +110,7 @@ fun MatchDisplay( match: TennisMatch) {
 
                         Spacer(modifier = Modifier.height(10.dp))
 
-                        Row() {
+                        Row(horizontalArrangement = Arrangement.Center) {
                             Text(match.player1.name,modifier=Modifier.weight(1f), textAlign = TextAlign.Center,style= MaterialTheme.typography.titleSmall)
                             Spacer(modifier = Modifier.width(5.dp))
                             Text(match.player2.name,modifier=Modifier.weight(1f), textAlign = TextAlign.Center,style= MaterialTheme.typography.titleSmall)
@@ -120,7 +119,7 @@ fun MatchDisplay( match: TennisMatch) {
 
                         Spacer(modifier = Modifier.height(5.dp))
 
-                        Row(){
+                        Row(horizontalArrangement = Arrangement.Center){
                             Text("${match.currentSet.currentGame!!.player1Score}",modifier=Modifier.weight(1f), textAlign = TextAlign.Center,style= MaterialTheme.typography.displayMedium)
                             Spacer(modifier = Modifier.width(5.dp))
                             Text("${match.currentSet.currentGame!!.player2Score}",modifier=Modifier.weight(1f), textAlign = TextAlign.Center,style= MaterialTheme.typography.displayMedium)
